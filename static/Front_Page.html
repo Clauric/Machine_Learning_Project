@@ -44,32 +44,38 @@
 					
 					<p><i><b><u>Note</u></b>: The estimates of the power produced are best on the data supplied for this assignment.</i></p>
 					
-					<form>																		<!-- create inputs -->
+					<form name="form1">																		<!-- create inputs -->
 						<label>Wind Speed (m/s):</label>										<!-- Wind speed label -->
-						<input type="text" id="WS" style="font-size:10pt; height:25px" required><br>	<!-- Wind speed input box -->
+						<input type="text" id="WS" name="WSPD" style="font-size:10pt; height:25px" placeholder="Wind speed as a decimal" required><br>	<!-- Wind speed input box -->
 						<br>
 					</form>
 					
 					<div class="btn-group">														<!-- buttons for the various regression models -->
-						<button id="Lin" style="height:30px; width:10%; background-color:#5188e0; border-color: black; color: white; font-weight: bold" 
+						<button id="LIR" style="height:30px; width:10%; background-color:#5188e0; border-color: black; color: white; font-weight: bold" onclick="CheckDecimal(form1.WSPD)"
 							title="Linear regression attempts to model the relationship between two variables by fitting a linear equation to observed data">Linear Regression</button>
-						<button id="RFR" style="height:30px; width:10%; background-color:#5188e0; border-color: black; color: white; font-weight: bold"
+						<button id="RFR" style="height:30px; width:10%; background-color:#5188e0; border-color: black; color: white; font-weight: bold" onclick="CheckDecimal(form1.WSPD)"
 							title="Multiple decision tree models being used to complete the regression">Random Forest Regression</button>
-						<button id="DTR" style="height:30px; width:10%; background-color:#5188e0; border-color: black; color: white; font-weight: bold"
+						<button id="DTR" style="height:30px; width:10%; background-color:#5188e0; border-color: black; color: white; font-weight: bold" onclick="CheckDecimal(form1.WSPD)"
 							title="A decision tree partitions the data into subsets to determine a model">Decision Tree Regression</button>
-						<button id="Sig" style="height:30px; width:10%; background-color:#5188e0; border-color: black; color: white; font-weight: bold"
+						<button id="SIG" style="height:30px; width:10%; background-color:#5188e0; border-color: black; color: white; font-weight: bold" onclick="CheckDecimal(form1.WSPD)"
 							title="Uses the sigmoid curve function to determine the outcome fo the data. Note: this is not a machne learning algorithm">Sigmoid Analysis</button>
-						<!--<button style="height:30px; width:10%; background-color:#5188e0; border-color: black; color: white; font-weight: bold"
-							title="Does the data analysis for all 4 ethods">All Regression Models</button> -->
+						<button style="height:30px; width:8%; background-color:red; border-color: black; color: white; font-weight: bold"
+							title="Resets the wind speed input and power estimate output boxes" onclick="newFunction()" value="Reset">Reset values</button>
 					</div>
 					<br>
-					<form>																		<!-- create inputs -->
-						<label>Estimated power output (kW/h):</label>							<!-- Power label -->
-						<input class="form-control" id="Power_Est" type="text" style="font-size:10pt; height:25px" placeholder="Power Estimate" readonly><br>	<!-- Power Estimate box -->
+					
+					<form>																		<!-- create output -->
+						<!--<label>Wind speed in km/h:</label>									<!-- Power label -->
+						<!--<input class="form-control" id="KMH" type="text" style="font-size:10pt; height:25px" placeholder="Wind speed in km/h" readonly> wspd<br>	<!-- Power Estimate box -->
+						<!--<label>Wind speed in MPH:</label>									<!-- Power label -->
+						<!--<input class="form-control" id="MPH" type="text" style="font-size:10pt; height:25px" placeholder="Power Estimate" readonly><br>	<!-- Power Estimate box -->
+						<label>Est. power output (kW/h):</label>							<!-- Power label -->
+						<input class="form-control" id="Power_Est" type="text" style="font-size:10pt; height:25px; width:8%" placeholder="Power Estimate" readonly><br>	<!-- Power Estimate box -->
 						<br>
 					</form>
 					<!-- PUT IN IF / ELSE FOR WARNINGS HERE -->
-					<input class="form-control" id="Warning" type="text" placeholder="Warnings" readonly>
+					<!--if (wspd > 70) {
+						<input class="form-control" id="Warning" type="text" placeholder="Warnings" readonly> -->
 				</font>
 				
 				<div class="footer">															<!-- Footer -->
@@ -81,36 +87,90 @@
 	</body>
 	
 	<script>
-	<!-- Insert date and time on page-->
-	document.getElementById('DateTime').innerHTML = Date()
 		
-		$("#Lin").click(																		<!-- Linear regression click -->
-			function(e) {
-				$.get('/api/Lin/' + parseFloat$("#WS").val(), function(data) {
-					$('#Power_Est').val(data.value);
-				});
-			});
+	document.getElementById('DateTime').innerHTML = Date()										<!-- Insert date and time on page -->
+	
+	function newFunction() {																	<!-- Clear the input and output boxes -->
+            document.getElementById("WS").value = ''
+			document.getElementById("Power_Est").value = '';
+        }
+		 
+	function CheckDecimal(WScheck) { 															<!-- Check if value entered is greater than 0.00 and a floating number -->
+		var decimal=  /^[+]?[0-9]+\.[0-9]+$/; 													<!-- Adapted from https://www.w3resource.com/javascript/form/decimal-numbers.php -->
+		var speedCheck = document.getElementById("WS").value
 		
-		$("#DTR").click(																		<!-- Decision tree regression click -->
-			function(e) {
-				$.get('/api/DTR/' + $("#WS").val(), function(data) {
-					$('#Power_Est').val(data.value);
-				});
+		if(WScheck.value.match(decimal)) {														<!-- If the value entered is not an integer or negative number -->
+			if (speedCheck >= 113.3) {															<!-- Check the wind speeds for warnings, such as huricanes, etc. --> <!-- Fastest wind speed ever recorded -->
+				alert("Warning:\r\n\r\nThis is faster than the highest wind speed ever recorded.\r\n\r\nThe fastest wind speed ever recorded was 113.3 m/s (408 km/h, 253 mph) in Barrow Island, Australia.")
+				return false;
+				}
+			else if (speedCheck >= 70) {														<!-- Cat 5 huricane -->
+				alert("Warning:\r\n\r\nThis wind speed indicates that there is a category 5 hurricane blowing./r/nThe fastest wind speed recorded in Ireland was 52.9878 m/s (190.756 km/h, 118.53 mph) at Fastnet Lighthouse, County Cork on 16 October 2017.")
+				return false;
+				}
+			else if (speedCheck >= 58.05556) {													<!-- Cat 4 huricane -->
+				alert("Warning:\r\n\r\nThis wind speed indicates that there is a category 4 hurricane blowing./r/nThe fastest wind speed recorded in Ireland was 52.9878 m/s (190.756 km/h, 118.53 mph) at Fastnet Lighthouse, County Cork on 16 October 2017.")
+				return false;
+				}
+			else if (speedCheck >= 52.9878) {													<!-- Cat 3 huricane -->
+				alert("Warning:\r\n\r\nThis wind speed indicates that there is a category 3 hurricane blowing./r/nThe fastest wind speed recorded in Ireland was 52.9878 m/s (190.756 km/h, 118.53 mph) at Fastnet Lighthouse, County Cork on 16 October 2017.")
+				return false;
+				}
+			else if (speedCheck >= 49.44444) {													<!-- Cat 3 huricane -->
+				alert("Warning:\r\n\r\nThis wind speed indicates that there is a category 3 hurricane blowing.")
+				return false;
+				}
+			else if (speedCheck >= 42.77778) {													<!-- Cat 2 huricane -->
+				alert("Warning:\r\n\r\nThis wind speed indicates that there is a category 2 hurricane blowing.")
+				return false;
+				}
+			else if (speedCheck >= 33.05556) {													<!-- Cat 1 huricane -->
+				alert("Warning:\r\n\r\nThis wind speed indicates that there is a category 1 hurricane blowing.")
+				return false;
+				}
+			else if (speedCheck >= 28.61111) {													<!-- Storm force winds -->
+				alert("Warning:\r\n\r\nThis wind speed indicates that there is a storm blowing.")
+				return false;
+				}
+			else
+				{
+				return true;
+				}
+			}
+		else
+			{ 
+			alert("Please enter a decimal number (i.e. x.yyy) greater or equal to 0.000")
+			return false;
+			}
+		}
+		
+	$("#LIR").click(																			<!-- Linear regression click -->
+		function(e) {
+			$.get('/api/Lin/' + $("#WS").val(), function(data) {
+				$('#Power_Est').val(data);
 			});
-			
-		$("#RFR").click(																		<!-- Random Forest regression click -->
-			function(e) {
-				$.get('/api/RFR/' + $("#WS").val(), function(data) {
-					$('#Power_Est').val(data.value);
-				});
+		});
+	
+	$("#DTR").click(																			<!-- Decision tree regression click -->
+		function(e) {
+			$.get('/api/DTR/' + $("#WS").val(), function(data) {
+				$('#Power_Est').val(data);
 			});
-			
-		$("#SIG").click(																		<!-- Sigmoind analysis click -->
-			function(e) {
-				$.get('/api/SIG/' + $("#WS").val(), function(data) {
-					$('#Power_Est').val(data.value);
-				});
+		});
+		
+	$("#RFR").click(																			<!-- Random Forest regression click -->
+		function(e) {
+			$.get('/api/RFR/' + $("#WS").val(), function(data) {
+				$('#Power_Est').val(data);
 			});
+		});
+		
+	$("#SIG").click(																			<!-- Sigmoind analysis click -->
+		function(e) {
+			$.get('/api/SIG/' + $("#WS").val(), function(data) {
+				$('#Power_Est').val(data);
+			});
+		});
         
 	</script>
 </html>
