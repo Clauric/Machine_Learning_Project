@@ -42,7 +42,10 @@
 					<p>To use this site, please enter the wind speed (in meters per second), and then select one of the models to conduct the estimation.<br>
 					The site will use the wind speed to estimate the kW/h that the speed will generate.<p>
 					
-					<p><i><b><u>Note</u></b>: The estimates of the power produced are best on the data supplied for this assignment.</i></p>
+					<p><b><u>Note</u></b>:</p> 
+					<i>* The estimates of the power produced are best on the data supplied for this assignment.<br>					
+					* The sigmoid analysis model has the lowest root mean squared error, suggesting it may have the most accurate estimates.<br> 
+					* The root mean squared error rises for each model from right to left.</i></p>
 					
 					<form name="form1">																		<!-- create inputs -->
 						<label>Wind Speed (m/s):</label>										<!-- Wind speed label -->
@@ -53,10 +56,10 @@
 					<div class="btn-group">														<!-- buttons for the various regression models -->
 						<button id="LIR" style="height:30px; width:10%; background-color:#5188e0; border-color: black; color: white; font-weight: bold" onclick="CheckDecimal(form1.WSPD)"
 							title="Linear regression attempts to model the relationship between two variables by fitting a linear equation to observed data">Linear Regression</button>
-						<button id="RFR" style="height:30px; width:10%; background-color:#5188e0; border-color: black; color: white; font-weight: bold" onclick="CheckDecimal(form1.WSPD)"
-							title="Multiple decision tree models being used to complete the regression">Random Forest Regression</button>
 						<button id="DTR" style="height:30px; width:10%; background-color:#5188e0; border-color: black; color: white; font-weight: bold" onclick="CheckDecimal(form1.WSPD)"
 							title="A decision tree partitions the data into subsets to determine a model">Decision Tree Regression</button>
+						<button id="RFR" style="height:30px; width:10%; background-color:#5188e0; border-color: black; color: white; font-weight: bold" onclick="CheckDecimal(form1.WSPD)"
+							title="Multiple decision tree models being used to complete the regression">Random Forest Regression</button>
 						<button id="SIG" style="height:30px; width:10%; background-color:#5188e0; border-color: black; color: white; font-weight: bold" onclick="CheckDecimal(form1.WSPD)"
 							title="Uses the sigmoid curve function to determine the outcome fo the data. Note: this is not a machne learning algorithm">Sigmoid Analysis</button>
 						<button style="height:30px; width:8%; background-color:red; border-color: black; color: white; font-weight: bold"
