@@ -3,7 +3,7 @@
 ## Table of Contents
   * [Introduction](#Introduction)
   * [Technologies and Libraries](#Technologies-and-Libraries)
-  * [Setup](#Setup)
+  * [Running the website](#Running-the-website)
   * [Research](#Research)
   * [Questions Asked](#Questions-Asked)
   * [Status](#Status)
@@ -34,35 +34,40 @@ There is a html file in the <a href="/static">Static</a> that is the front end o
 After downloading this repository, there are a number of ways that the user can run the power predictions application.
 
 1) Open the command prompt, and go to the location that this depository is stored on your machine. From there, type in the following commands:
+
     a) Windows:
+
         * set FLASK_APP=Power_Est.py
+
         * python -m flask run
 
     b) Linux:
+
         * export FLASK_APP=Power_Est.py
+
         * python3 -m flask run
 
     After this, the user should be able to access the operational html file at: http://127.0.0.1:5000/
 
     c) Docker:
+
         * docker build . -t power-image
-        docker run --name power-container -d -p 5000:5000 power-image
-        
+
+        * docker run --name power-container -d -p 5000:5000 power-image
+
 ## Research
-Research for the assignment was conducted through extensive internet research. A bibliography for each task is included in Jupyter Notebook, at the end of each section.
+Research for the assignment was conducted through extensive internet research. A bibliography has been included at the end of the <a href="Regression models review notebook.ipynb">jupyter notebook</a> that details all the articles consulted. Throughout the notebook, hyperlinks have been included to articles directly cited.
 
 ## Questions Asked
-The assignment was broken into 4 parts. The specific tasks are listed in the notebook, and are summarised as follows:
-1. Print the square root of 2 to 100 decimal places without the importation of any libraries.
-2. Discuss the Chi-squared test for independence, and reproduce the results of the given test.
-3. Discuss standard deviation, the difference between populationa and standard deviation with relation to accuracy of the estimate, and provide an example.
-4. Explain k-means clustering with regards to the Fisher's Iris dataset, and discuss the implications.
-
-## Note on task 4
-The code for task #4 was originally written in the week of November 30th, 2020. The task was subsequently changed to be a question on K-nearest neighbour (KNN), as oppesed to k-means. However, by the time that the change in the task was clarified, 95% of the write-up, and 100% of the code had been completed and committed to the notebook. As such, it was not changed to reflect the change in the question.
+The assignent set was as follows:
+* ... create a web service that uses machine learning to make predictions based on the data set powerproduction available on Moodle. The goal is to produce a model that accurately predicts wind turbine power output from wind speed values, as in the data set. You must then develop a web service that will respond with predicted power values based on speed values sent as HTTP requests. Your submission must be in the form of a git repository containing, at a minimum, the following items:
+1. <a href="Regression models review notebook.ipynb">Jupyter notebook</a> that trains a model using the data set. In the notebook you should explain your model and give an analysis of its accuracy.
+2. <a href="Power_Est.py">Python script</a> that runs a <a href="/static/Front_Page.html">web service</a> based on the model, as above.
+3. <a href="Dockerfile">Dockerfile</a> to build and run the web service in a container.
+4. Standard items in a git repository such as a README.
 
 ## Status
-The status of this project is complete. As there is a submission date of the 18th December, 2020, the files will not be altered, from their current format, after that date. Where the last push/alter date is prior to the 18th December, 2020,, that date can be viewed as the completion date.
+The status of this project is complete. As there is a submission date of the 15th January, 2021, the files will not be altered, from their current format, after that date. Where the last push/alter date is prior to the 15th January, 2021, that date can be viewed as the completion date.
  
 ## Other Information
 ### About the Author
