@@ -67,7 +67,7 @@ The assignent set was as follows:
     4. Standard items in a git repository such as a README.
 
 ## Status
-The status of this project is complete. As there is a submission date of the 15{^th} January, 2021, the files will not be altered, from their current format, after that date. Where the last push/alter date is prior to the 15{^th} January, 2021, that date can be viewed as the completion date.
+The status of this project is complete. As there is a submission date of the 15th January, 2021, the files will not be altered, from their current format, after that date. Where the last push/alter date is prior to the 15th January, 2021, that date can be viewed as the completion date.
  
 ## Other Information
 ### About the Author
