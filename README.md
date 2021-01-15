@@ -33,7 +33,7 @@ There is a html file in the <a href="/static">Static</a> that is the front end o
 
 After downloading this repository, there are a number of ways that the user can run the power predictions application.
 
-1) Open the command prompt, and go to the location that this depository is stored on your machine. From there, type in the following commands:
+* Open the command prompt, and go to the location that this depository is stored on your machine. From there, type in the following commands:
 
     a) Windows:
 
