@@ -61,13 +61,13 @@ Research for the assignment was conducted through extensive internet research. A
 ## Questions Asked
 The assignent set was as follows:
 * ... create a web service that uses machine learning to make predictions based on the data set powerproduction available on Moodle. The goal is to produce a model that accurately predicts wind turbine power output from wind speed values, as in the data set. You must then develop a web service that will respond with predicted power values based on speed values sent as HTTP requests. Your submission must be in the form of a git repository containing, at a minimum, the following items:
-1. <a href="Regression models review notebook.ipynb">Jupyter notebook</a> that trains a model using the data set. In the notebook you should explain your model and give an analysis of its accuracy.
-2. <a href="Power_Est.py">Python script</a> that runs a <a href="/static/Front_Page.html">web service</a> based on the model, as above.
-3. <a href="Dockerfile">Dockerfile</a> to build and run the web service in a container.
-4. Standard items in a git repository such as a README.
+    1. <a href="Regression models review notebook.ipynb">Jupyter notebook</a> that trains a model using the data set. In the notebook you should explain your model and give an analysis of its accuracy.
+    2. <a href="Power_Est.py">Python script</a> that runs a <a href="/static/Front_Page.html">web service</a> based on the model, as above.
+    3. <a href="Dockerfile">Dockerfile</a> to build and run the web service in a container.
+    4. Standard items in a git repository such as a README.
 
 ## Status
-The status of this project is complete. As there is a submission date of the 15th January, 2021, the files will not be altered, from their current format, after that date. Where the last push/alter date is prior to the 15th January, 2021, that date can be viewed as the completion date.
+The status of this project is complete. As there is a submission date of the 15{^th} January, 2021, the files will not be altered, from their current format, after that date. Where the last push/alter date is prior to the 15{^th} January, 2021, that date can be viewed as the completion date.
  
 ## Other Information
 ### About the Author
